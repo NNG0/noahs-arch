@@ -1,0 +1,100 @@
+@define-color foreground rgba(255, 255, 255, 0.8);
+@define-color background rgba(0,0,0, 0.5);
+@define-color text #ffffff;
+
+#window,
+#box,
+#search,
+#password,
+#input,
+#prompt,
+#clear,
+#typeahead,
+#list,
+child,
+scrollbar,
+slider,
+#item,
+#text,
+#label,
+#sub,
+#activationlabel {
+  all: unset;
+}
+
+* {
+    font-family: 'JetbrainsMono Nerd Font';
+    font-size: 18px;
+}
+
+ #window {
+  background: transparent;
+}
+
+ #box {
+     background: @background;
+     padding: 15px;
+     opacity: 5.0;
+     border-radius: 15px;
+ }
+
+ #search {
+    opacity: 5.0;
+    padding: 10px;
+  margin-bottom: 0;
+ }
+/* Input field */
+#input {
+  background: none;
+  color: @text;
+  padding: 0;
+}
+
+#input placeholder {
+  opacity: 0.5;
+  color: @text;
+}
+
+#list {
+  background: transparent;
+}
+
+child {
+  padding: 0px 12px;
+  background: transparent;
+  border-radius: 15px;
+}
+
+child:selected,
+child:hover {
+  background: #5555ff;
+}
+
+#icon {
+  margin-right: 10px;
+}
+
+#text {
+  color: @text;
+  padding: 14px 0;
+}
+
+#label {
+  font-weight: normal;
+}
+
+#sub {
+  opacity: 1;
+  font-size: 0;
+  min-height: 0;
+}
+
+#activationlabel {
+  opacity: 0;
+  min-width: 0;
+}
+
+scrollbar {
+  opacity: 0;
+}
+
