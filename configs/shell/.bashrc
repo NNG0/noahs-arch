@@ -24,4 +24,4 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-eval "$(oh-my-posh init bash)"
+eval "$(oh-my-posh init bash --config '~/amro.omp.json')"
