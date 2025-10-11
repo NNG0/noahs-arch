@@ -28,7 +28,7 @@
         "temperature",
 //        "backlight",
 //        "keyboard-state",
-//        "hyprland/language",
+        "hyprland/language",
         "battery",
 //        "battery#bat2",
         "tray",
@@ -54,6 +54,11 @@
             "locked": "",
             "unlocked": ""
         }
+    },
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "EN",
+        "format-de": "DE"
     },
     "hyprland/mode": {
         "format": "<span style=\"italic\">{}</span>"
