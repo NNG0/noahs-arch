@@ -45,3 +45,4 @@ sudo pacman -S --noconfirm --needed \
     # util
     playerctl \
     brightnessctl \
+    zsh \
