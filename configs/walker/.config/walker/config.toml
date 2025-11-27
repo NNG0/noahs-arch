@@ -1,32 +1,46 @@
-close_when_open = true
-theme = "noahs-arch"
-theme_base = []
-theme_location = ["~/.config/walker/themes"]
-hotreload_theme = true
+force_keyboard_focus = true                                                 # forces keyboard forcus to stay in Walker
+selection_wrap = true                                                       # wrap list if at bottom or top
+disable_mouse = true
+theme = "noahs-arch"                                                   # theme to use
+additional_theme_location = "~/.config/walker/themes/"
 
+[placeholders]
+"default" = { input = " Search...", list = "No Results" } # placeholders for input and empty list, key is the providers name, so f.e. "desktopapplications" or "menus:other"
 
-[builtins.finder]
-name = "finder"
-icon = "folder"
-placeholder = "Finder"
-switcher_only = true
-ignore_gitignore = true
-refresh = true
-concurrency = 8
-preview_images = false
-use_fd = true
-fd_flags = "--ignore-vcs --type file --type directory"
-cmd_alt = 'xdg-open "$(dirname "$HOME/%RESULT%")"'
+[keybinds]
+quick_activate = []
 
+[providers]
+max_results = 30
 
-[builtins.clipboard]
-name = "clipboard"
-icon = "user-bookmarks"
-placeholder = "Clipboard"
-switcher_only = true
-always_put_new_on_top = true
-avoid_line_breaks = true
-image_height = 300
-max_entries = 10
-exec = "wl-copy"
-hidden = false
+[providers.max_results_provider]
+desktopapplications = 15
+files = 20
+default = [
+  "desktopapplications",
+] # providers to be queried by default
+empty = ["desktopapplications"]
+
+[[providers.prefixes]]
+prefix = "/"
+provider = "providerlist"
+
+[[providers.prefixes]]
+prefix = "."
+provider = "files"
+
+[[providers.prefixes]]
+prefix = ":"
+provider = "symbols"
+
+[[providers.prefixes]]
+prefix = "="
+provider = "calc"
+
+[[providers.prefixes]]
+prefix = "@"
+provider = "websearch"
+
+[[providers.prefixes]]
+prefix = "$"
+provider = "clipboard"
