@@ -9,16 +9,15 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
-source scripts/packages/base.sh
-source scripts/packages/apps.sh
-source scripts/packages/tools.sh
+source ~/repos/noahs-arch/scripts/packages/base.sh
+source  ~/repos/noahs-arch/scripts/packages/apps.sh
+source  ~/repos/noahs-arch/scripts/packages/tools.sh
 
-source scripts/wallpaper.sh
-
-reboot
+mkdir ~/images
+source  ~/repos/noahs-arch/scripts/wallpaper.sh
 
 # run setup scripts
-source srcipts/link-configs.sh
-source scripts/executables.sh
-source scripts/firewall.sh
-source scripts/swayosd-setup.sh
+source  ~/repos/noahs-arch/srcipts/link-configs.sh
+source  ~/repos/noahs-arch/scripts/executables.sh
+source  ~/repos/noahs-arch/scripts/firewall.sh
+source  ~/repos/noahs-arch/scripts/swayosd-setup.sh
