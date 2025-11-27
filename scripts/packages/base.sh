@@ -7,7 +7,6 @@ yay -S --noconfirm --needed \
     nvim \
     yazi \
     fastfetch \
-    # hypr
     uwsm \
     hyprland \
     hyprshot \
@@ -15,16 +14,13 @@ yay -S --noconfirm --needed \
     swayosd \
     waybar \
     ttf-jetbrains-mono-nerd \
-    # wifi
     impala \
     iwd \
-    # audio
     pipewire\
     pipewire-pulse\
     wireplumber \
     wiremix \
     wireguard-tools \
-    # util
     power-profiles-daemon \
     playerctl \
     brightnessctl \
@@ -38,9 +34,7 @@ yay -S --noconfirm --needed \
     jq \
     eza \
     ripgrep \
-    # firewall
     ufw \
-    # menu
     walker \
     elephant \
     elephant-desktopapplications
