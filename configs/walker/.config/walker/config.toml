@@ -13,13 +13,15 @@ quick_activate = []
 [providers]
 max_results = 30
 
-[providers.max_results_provider]
-desktopapplications = 15
-files = 20
 default = [
   "desktopapplications",
 ] # providers to be queried by default
 empty = ["desktopapplications"]
+
+
+[providers.max_results_provider]
+desktopapplications = 15
+files = 20
 
 [[providers.prefixes]]
 prefix = "/"
