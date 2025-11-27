@@ -16,6 +16,7 @@ alias lt='eza --tree --level=2 --long --icons --git'
 alias grep='rg --color=auto'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 alias find="fd"
+alias lg="lazygit"
 
 # Load Git CLI autocompletion.
 source /usr/share/bash-completion/completions/git

@@ -4,4 +4,5 @@ yay -S --noconfirm --needed \
     docker-buildx \
     docker-compose \
     lazydocker \
+    lazygit \
 
