@@ -19,6 +19,7 @@
     "modules-right": [
 //        "mpd",
 //        "idle_inhibitor",
+        "tray",
         "pulseaudio",
         "network",
         "bluetooth",
@@ -31,7 +32,6 @@
         "hyprland/language",
         "battery",
 //        "battery#bat2",
-        "tray",
         "custom/power"
     ],
     // Modules configuration
@@ -110,7 +110,8 @@
     "clock": {
         "timezone": "Europe/Berlin",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%d-%m-%Y}"
+        "format-alt": "{:%d-%m-%Y}",
+        "on-click": "swaync-client -t"
     },
     "cpu": {
         "format": "{usage}% ",
