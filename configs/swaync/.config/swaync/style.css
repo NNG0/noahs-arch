@@ -1,11 +1,11 @@
 @define-color cc-bg rgb(0, 0, 0);
 @define-color noti-border-color rgba(255, 255, 255, 0.15);
-@define-color noti-bg rgba(48, 48, 48, 0.8);
-@define-color noti-bg-opaque rgb(48, 48, 48);
-@define-color noti-bg-darker rgb(38, 38, 38);
-@define-color noti-bg-hover rgb(56, 56, 56);
-@define-color noti-bg-hover-opaque rgb(56, 56, 56);
-@define-color noti-bg-focus rgba(68, 68, 68, 0.6);
+@define-color noti-bg rgba(0, 0, 0, 0.8);
+@define-color noti-bg-opaque rgb(0, 0, 0);
+@define-color noti-bg-darker rgb(0, 0, 0);
+@define-color noti-bg-hover rgb(30, 30, 30);
+@define-color noti-bg-hover-opaque rgb(30, 30, 30);
+@define-color noti-bg-focus rgba(0, 0, 0, 0.6);
 @define-color noti-close-bg rgba(255, 255, 255, 0.1);
 @define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
 @define-color text-color rgb(255, 255, 255);
@@ -267,6 +267,7 @@
   background: @cc-bg;
   color: @text-color;
   border-radius: 15px;
+  border: 1px solid @noti-border-color;
 }
 
 .control-center .control-center-list-placeholder {
