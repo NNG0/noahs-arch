@@ -1,11 +1,12 @@
-@define-color cc-bg rgb(0, 0, 0);
+@define-color cc-bg rgba(0, 0, 0, 0.7);
 @define-color noti-border-color rgba(255, 255, 255, 0.15);
-@define-color noti-bg rgba(0, 0, 0, 0.8);
-@define-color noti-bg-opaque rgb(0, 0, 0);
-@define-color noti-bg-darker rgb(0, 0, 0);
-@define-color noti-bg-hover rgb(30, 30, 30);
-@define-color noti-bg-hover-opaque rgb(30, 30, 30);
-@define-color noti-bg-focus rgba(0, 0, 0, 0.6);
+@define-color noti-bg rgba(0, 0, 0, 0.7);
+@define-color noti-bg-opaque rgba(0, 0, 0, 0.7);
+@define-color noti-bg-darker rgba(0, 0, 0, 0.7);
+/*@define-color noti-bg-hover rgb(30, 30, 30);*/
+@define-color noti-bg-hover rgba(0, 0, 0, 0.7);
+@define-color noti-bg-hover-opaque rgba(0, 0, 0, 0.7);
+@define-color noti-bg-focus rgba(0, 0, 0, 0.7);
 @define-color noti-close-bg rgba(255, 255, 255, 0.1);
 @define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
 @define-color text-color rgb(255, 255, 255);
@@ -207,8 +208,10 @@
   border-right: none;
 }
 
+
 .notification-group {
   /* Styling only for Grouped Notifications */
+    background-color: @cc-bg;
 }
 
 .notification-group.low {
@@ -245,7 +248,7 @@
 }
 
 .notification-group.collapsed .notification-row .notification {
-  background-color: @noti-bg-opaque;
+  background-color: @cc-bg;
 }
 
 .notification-group.collapsed .notification-row:not(:last-child) {
@@ -259,7 +262,7 @@
 }
 
 .notification-group.collapsed:hover .notification-row:not(:only-child) .notification {
-  background-color: @noti-bg-hover-opaque;
+  background-color: @cc-bg;
 }
 
 .control-center {

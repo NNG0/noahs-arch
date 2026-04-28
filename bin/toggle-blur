@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Check if blur is currently enabled
+BLUR_STATUS=$(hyprctl getoption decoration:blur:enabled -j | jq -r '.int')
+
+if [ "$BLUR_STATUS" -eq 1 ]; then
+    # If blur is enabled, disable it
+    hyprctl keyword decoration:blur:enabled 0
+    echo "Blur disabled"
+else
+    # If blur is disabled, enable it
+    hyprctl keyword decoration:blur:enabled 1
+    echo "Blur enabled"
+fi

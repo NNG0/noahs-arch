@@ -4,11 +4,19 @@ disable_mouse = true
 theme = "noahs-arch"                                                   # theme to use
 additional_theme_location = "~/.config/walker/themes/"
 
+[shell]
+exclusive_zone = 0
+layer = "overlay"
+anchor_top = false
+anchor_bottom = false
+anchor_left = false
+anchor_right = false
+
 [placeholders]
 "default" = { input = " Search...", list = "No Results" } # placeholders for input and empty list, key is the providers name, so f.e. "desktopapplications" or "menus:other"
 
 [keybinds]
-quick_activate = []
+# quick_activate = []
 
 [providers]
 max_results = 30
