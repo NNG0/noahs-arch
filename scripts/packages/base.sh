@@ -37,5 +37,5 @@ yay -S --noconfirm --needed \
     ufw \
     walker \
     elephant \
-    elephant-desktopapplications
-
+    elephant-desktopapplications \
+    xdg-desktop-portal-termfilechooser-hunkyburrito-git
