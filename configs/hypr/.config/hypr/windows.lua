@@ -41,9 +41,9 @@ hl.window_rule({
 
 -- blur
 hl.layer_rule({
-    name = blur,
-    blur = on,
-    blur_popups = on,
+    name = "blur",
+    blur = true,
+    blur_popups = true,
     ignore_alpha = 0,
     match = { namespace = "(waybar|walker|swaync-control-center|swayosd)" }
 
@@ -51,9 +51,9 @@ hl.layer_rule({
 
 -- floating windows
 hl.window_rule({
-    name = floating_windows,
-    float = on,
-    center = on,
+    name = "floating_windows",
+    float = true,
+    center = true,
     size = { 875, 600 },
     match = { class = "(clipse|Bluetui|Impala|Wiremix|btop)" }
 
