@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if missing-pkg "$@"; then
+    sudo pacman -S --needed --noconfirm "$@"
+fi

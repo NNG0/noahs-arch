@@ -1,0 +1,6 @@
+# packages for base usage
+clipse
+elephant
+elephant-desktopapplications
+walker
+xdg-desktop-portal-termfilechooser-hunkyburrito-git

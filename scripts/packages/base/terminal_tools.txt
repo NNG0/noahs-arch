@@ -1,0 +1,6 @@
+eza
+fd
+fzf
+jq
+ripgrep
+zoxide

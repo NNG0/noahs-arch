@@ -1,0 +1,6 @@
+# extra programs
+firefox
+keepassxc
+spotify-launcher
+syncthing
+thunderbird
