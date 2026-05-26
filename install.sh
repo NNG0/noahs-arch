@@ -13,9 +13,33 @@ step () {
     echo "==> $1"
 }
 
-# update system
-step "Updating system..."
-sudo pacman -Syu --noconfirm
+STEAM=false
+EXTRAS=false
+CODING=false
+NVIM=false
+
+step "Choose options..."
+if confirm "Install extra packages?"; then
+    EXTRAS=true
+fi
+
+if confirm "Install coding tools?"; then
+    CODING=true
+    if confirm "Install nvim config?"; then
+        NVIM=true
+    fi
+fi
+
+if confirm "Install steam?"; then
+    STEAM=true
+fi
+
+# enable repository
+if $STEAM; then
+    step "Enabling multilib repository"
+    sudo sed -i '/^\#\[multilib\]/,/^\#Include = \/etc\/pacman.d\/mirrorlist/ {s/^#//}' /etc/pacman.conf
+fi
+
 
 # install and build yay
 if ! command -v yay &>/dev/null; then
@@ -29,24 +53,34 @@ if ! command -v yay &>/dev/null; then
     rm -rf "$tmpdir"
 fi
 
+# update system
+step "Updating system..."
+sudo pacman -Syu --noconfirm
+
 step "Installing base packages..."
 "$SCRIPT_DIR/scripts/packages/base/base.sh"
 
-if confirm "Install extra packages?"; then
+if $EXTRAS; then
+    step "Installing extra packages..."
     "$SCRIPT_DIR/scripts/packages/extra/extras.sh"
 fi
 
-if confirm "Install coding tools?"; then
+if $CODING; then
+    step "Installing coding tools..."
     "$SCRIPT_DIR/scripts/packages/coding_tools/tools.sh"
-    if confirm "Install nvim config?"; then
+
+    if $NVIM; then
+        step "Installing neovim config..."
         git clone https://github.com/NNG0/noahs-nvim "$HOME/.config/nvim"
     fi
 fi
 
+if $STEAM; then
+    sudo pacman -S steam --needed --noconfirm
+fi
 
 # run setup scripts
 step "Setup..."
-mkdir -p ~/Pictures
 mkdir -p ~/Pictures/Screenshots
 
 "$SCRIPT_DIR/scripts/wallpaper.sh"
