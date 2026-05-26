@@ -10,7 +10,9 @@
     // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces",
-        "hyprland/window"
+//        "hyprland/window",
+        "hyprland/submap"
+
     ],
     "modules-center": [
         "clock",
@@ -41,9 +43,9 @@
         "warp-on-scroll": false,
         "format": "{icon}",
         "format-icons": {
-            "urgent": "",
-            "active": "",
-            "default": ""
+            "urgent": "",
+            "active": " ",
+            "default": " "
         }
     },
     "keyboard-state": {
