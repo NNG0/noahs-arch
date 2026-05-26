@@ -43,6 +43,3 @@ function y() {
 
 eval "$(zoxide init bash)"
 
-. "$HOME/.local/share/../bin/env"
-
-export PATH="/home/nng/.pixi/bin:$PATH"
