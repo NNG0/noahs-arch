@@ -3,3 +3,4 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 export PATH="$HOME/repos/noahs-arch/bin:$HOME/.local/bin:$PATH"
+export HYPRSHOT_DIR="$HOME/Pictures/Screenshots"

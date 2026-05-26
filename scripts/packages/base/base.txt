@@ -1,0 +1,24 @@
+# packages for base usage
+alacritty
+bat
+brightnessctl
+fastfetch
+hyprland
+hyprshot
+hyprsunset
+imagemagick
+iwd
+pacman-contrib
+pipewire
+pipewire-puls
+playerctl
+power-profiles-daemon
+stow
+swayosd
+ttf-jetbrains-mono-nerd
+ufw
+unzip
+uwsm
+waybar
+wireplumber
+wl-clipboard

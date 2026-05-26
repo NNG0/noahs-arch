@@ -5,19 +5,29 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PS1='[\u@\h \W]\$ '
+# prompt
+source /usr/share/git/completion/git-prompt.sh
 
-if uwsm check may-start; then
-    exec uwsm start hyprland.desktop
-fi
+CYAN="\[\033[0;36m\]"
+BLUE="\[\033[0;34m\]"
+MAGENTA="\[\033[0;35m\]"
+GRAY="\[\033[0;90m\]"
+GREEN="\[\033[0;32m\]"
+RESET="\[\033[0m\]"
 
+export GIT_PS1_SHOWDIRTYSTATE=1
+
+PS1="${CYAN}󰣇 \u ${GRAY}on ${BLUE} \W${GREEN}\$(__git_ps1 ' (%s)')\n${MAGENTA}# ${RESET}"
+
+# alias definitions
 alias ls='eza -lh --group-directories-first --icons=auto'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias grep='rg --color=auto'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 alias find="fd"
 alias lg="lazygit"
-alias z="zoxide"
+alias n="nvim ."
+alias zj="zellij"
 
 # Load Git CLI autocompletion.
 source /usr/share/bash-completion/completions/git
@@ -31,9 +41,8 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-# lazy load oh my posh
-if [[ $- == *i* ]]; then
-  eval "$(oh-my-posh init bash --config '~/amro.omp.json')"
-fi
-
 eval "$(zoxide init bash)"
+
+. "$HOME/.local/share/../bin/env"
+
+export PATH="/home/nng/.pixi/bin:$PATH"

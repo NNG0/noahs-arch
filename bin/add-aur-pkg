@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if missing-pkg "$@"; then
+    yay -S --needed --noconfirm "$@"
+fi

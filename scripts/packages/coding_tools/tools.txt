@@ -1,0 +1,10 @@
+code
+docker
+docker-buildx
+docker-compose
+jetbrains-toolbox
+lazydocker
+lazygit
+nvim
+uv
+zellij

@@ -1,0 +1,3 @@
+# extra packages that are not needed for base usage
+zoom
+zotero

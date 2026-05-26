@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+[[ "$(cat /sys/class/dmi/id/chassis_type)" =~ ^(8|9|10|14)$ ]]
