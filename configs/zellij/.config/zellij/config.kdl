@@ -1,0 +1,16 @@
+theme "onedark"
+
+default_layout "dev"
+
+pane_frames false
+simplified_ui true 
+
+ui {
+    pane_frames {
+        rounded_corners true
+        hide_session_name true
+    }
+}
+
+show_startup_tips false
+show_release_notes false
