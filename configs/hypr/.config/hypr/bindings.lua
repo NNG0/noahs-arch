@@ -5,7 +5,7 @@
 -- Set programs that you use
 local terminal    = "uwsm app -- alacritty"
 local fileManager = "uwsm app -- alacritty --class yazi -e yazi"
-local menu        = 'uwsm app -- walker -p "Search…"'
+local launcher    = 'uwsm app -- walker -p "Search…"'
 local browser     = "uwsm app -- firefox"
 local lock        = "uwsm app -- hyprlock"
 local nm          = "uwsm app -- swaync-client -t"
@@ -26,7 +26,7 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(nm))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(terminal .. " --class clipse -e clipse"))
-hl.bind(mainMod .. " + SLASH", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + SLASH", hl.dsp.exec_cmd(launcher))
 
 ------------------------
 ---- Window actions ----
