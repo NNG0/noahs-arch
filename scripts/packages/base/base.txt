@@ -10,7 +10,7 @@ imagemagick
 iwd
 pacman-contrib
 pipewire
-pipewire-puls
+pipewire-pulse
 playerctl
 power-profiles-daemon
 stow
