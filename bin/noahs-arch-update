@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"
+CONF="$HOME/.config/noahs-arch/noahs-arch.conf"
+
+echo "$SCRIPT_DIR"
+MAINTANCE=false
+
+confirm() {
+    read -rp "$1 [y/N] " answer
+    [[ "$answer" =~ ^[Yy]$ ]]
+}
+
+step () {
+    echo
+    echo "==> $1"
+}
+
+# Load config
+if [[ -f "$CONF" ]]; then
+    source "$CONF"
+else
+    echo "Error: config file not found at $CONF"
+    exit 1
+fi
+
+if confirm "Run system maintance?"; then
+    MAINTANCE=true
+fi
+
+if confirm "Update System?"; then
+    yay -Syu --noconfirm
+fi
+
+step "Ensuring scripts are executable..."
+chmod +x "$SCRIPT_DIR/scripts/executables.sh"
+"$SCRIPT_DIR/scripts/executables.sh"
+
+step "Refreshing configuration links..."
+"$SCRIPT_DIR/scripts/link-configs.sh"
+
+
+step "Ensuring base packages are installed..."
+"$SCRIPT_DIR/scripts/packages/base/base.sh"
+
+if [ "${EXTRAS:-false}" = true ]; then
+    step "Ensuring extra packages are installed..."
+    "$SCRIPT_DIR/scripts/packages/extra/extras.sh"
+fi
+
+if [ "${CODING:-false}" = true ]; then
+    step "Ensuring coding tools are installed..."
+    "$SCRIPT_DIR/scripts/packages/coding_tools/tools.sh"
+
+    if [ "${NVIM:-false}" = true ] && [ ! -d "$HOME/.config/nvim" ]; then
+        step "Cloning missing Neovim config..."
+        git clone https://github.com/NNG0/noahs-nvim "$HOME/.config/nvim"
+    fi
+fi
+
+if [ "${STEAM:-false}" = true ]; then
+    step "Ensuring Steam is installed..."
+    sudo pacman -S steam --needed --noconfirm
+fi
+
+if "$MAINTANCE"; then
+    noahs-arch-maintance
+fi
+
+step "Update and maintenance complete!"

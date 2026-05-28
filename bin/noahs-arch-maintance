@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+GREEN="\e[32m"
+RED="\e[31m"
+RESET="\e[0m"
+
+# Default flags
+ALL=true
+CACHE=false
+JOURNAL=false
+SYSTEMD=false
+ORPHANS=false
+TRASH=false
+DOWNLOADS=false
+
+info() { echo -e "${GREEN}[INFO]${RESET} $1"; }
+error() { echo -e "${RED}[ERROR]${RESET} $1"; }
+confirm() {
+    read -rp "$1 [y/N] " answer
+    [[ "$answer" =~ ^[Yy]$ ]]
+}
+usage() {
+    echo "Usage: $0 [-h] [-c] [-u] [-o] [-j] [-s] [-t] [-d]"
+    echo "  -h  Show this help message"
+    echo "  -c  Clean package cache"
+    echo "  -o  Remove orphan packages"
+    echo "  -j  Vacuum systemd journal entries"
+    echo "  -s  Check failed systemd services"
+    echo "  -t  Empty system trash"
+    echo "  -d  Clean files older than 14 days in Downloads"
+    echo "  (If no flags are specified, ALL tasks are run)"
+    exit 0
+}
+
+while getopts "hcuojstd" flag; do
+    case "${flag}" in
+        c) CACHE=true; ALL=false ;;
+        o) ORPHANS=true; ALL=false ;;
+        j) JOURNAL=true; ALL=false ;;
+        s) SYSTEMD=true; ALL=false ;;
+        t) TRASH=true; ALL=false ;;
+        d) DOWNLOADS=true; ALL=false ;;
+        h|*) usage ;;
+    esac
+done
+
+clean_cache() {
+    info "Cleaning package cache..."
+    sudo paccache -r
+    sudo paccache -ruk0
+    yay -Sc --noconfirm
+    info "Package cache cleaned."
+}
+
+remove_orphans() {
+    info "Removing orphaned packages..."
+    local orphans
+    orphans=$(pacman -Qdtq || true)
+    if [[ -n "$orphans" ]]; then
+        yay -Rns --noconfirm $orphans
+    else
+        info "No orphaned packages found."
+    fi
+}
+
+check_systemd() {
+    info "Checking for failed systemd units..."
+    systemctl --failed
+}
+
+remove_journal_entries() {
+    info "Removing journal entries older than two weeks..."
+    sudo journalctl --vacuum-time=2weeks
+}
+
+empty_trash() {
+    info "Emptying system trash..."
+    if command -v gio &> /dev/null; then
+        gio trash --empty
+        info "Trash emptied."
+    else
+        error "gio command not found. Cannot empty trash automatically."
+    fi
+}
+
+clean_downloads() {
+    local target_dir="$HOME/Downloads"
+    if [[ -d "$target_dir" ]]; then
+        info "Cleaning files older than 14 days from $target_dir..."
+        # Finds files (-type f) older than 14 days (-mtime +14) and deletes them
+        find "$target_dir" -type f -mtime +14 -delete
+        # Clean up empty subdirectories left behind
+        find "$target_dir" -mindepth 1 -type d -empty -delete
+        info "Downloads folder cleaned."
+    else
+        info "Downloads directory does not exist. Skipping."
+    fi
+}
+
+if [ "$ALL" = true ]; then
+    clean_cache
+    remove_orphans
+    check_systemd
+    remove_journal_entries
+    if confirm "Remove trash?"; then
+        empty_trash
+    fi
+    if confirm "Remove downloaded files older than 14 days?"; then
+        clean_downloads
+    fi
+else
+    [ "$CACHE" = true ] && clean_cache
+    [ "$ORPHANS" = true ] && remove_orphans
+    [ "$SYSTEMD" = true ] && check_systemd
+    [ "$JOURNAL" = true ] && remove_journal_entries
+    [ "$TRASH" = true ] && empty_trash
+    [ "$DOWNLOADS" = true ] && clean_downloads
+fi
