@@ -9,6 +9,7 @@
 --
 hl.on("hyprland.start", function()
     hl.exec_cmd("uwsm app -- alacritty")
+    hl.exec_cmd("uwsm app -- hyprsunset")
     hl.exec_cmd("uwsm app -- clipse -listen")
     hl.exec_cmd("uwsm app -- elephant")
     hl.exec_cmd("uwsm app -- waybar")
