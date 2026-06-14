@@ -4,3 +4,4 @@ elephant
 elephant-desktopapplications
 walker
 xdg-desktop-portal-termfilechooser-hunkyburrito-git
+zen-browser-bin

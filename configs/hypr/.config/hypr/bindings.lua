@@ -6,7 +6,7 @@
 local terminal    = "uwsm app -- alacritty"
 local fileManager = "uwsm app -- alacritty --class yazi -e yazi"
 local launcher    = 'uwsm app -- walker -p "Search…"'
-local browser     = "uwsm app -- firefox"
+local browser     = "uwsm app -- zen-browser"
 local lock        = "uwsm app -- hyprlock"
 local nm          = "uwsm app -- swaync-client -t"
 
