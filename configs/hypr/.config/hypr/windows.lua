@@ -49,6 +49,12 @@ hl.layer_rule({
 
 })
 
+hl.layer_rule({
+    name = "no screenshot border",
+    no_anim = true,
+    match = { namespace = "(selection|hyprpicker)" }
+})
+
 -- floating windows
 hl.window_rule({
     name = "floating_windows",
