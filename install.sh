@@ -122,9 +122,8 @@ fi
 step "Setup..."
 mkdir -p ~/Pictures/Screenshots
 
-"$SCRIPT_DIR/scripts/wallpaper.sh"
-"$SCRIPT_DIR/scripts/firewall.sh"
-"$SCRIPT_DIR/scripts/swayosd-setup.sh"
+
+"$SCRIPT_DIR/scripts/first-run/"*
 
 step "Cleanup..."
 noahs-arch-maintance

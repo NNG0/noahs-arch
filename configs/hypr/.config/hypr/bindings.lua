@@ -1,21 +1,31 @@
 ------------------
 ---- PROGRAMS ----
 ------------------
+local function alacritty(args)
+    args = args or ""
+    return string.format(
+        "alacritty msg create-window %s || exec uwsm app -- alacritty %s",
+        args,
+        args
+    )
+end
 
 -- Set programs that you use
-local terminal    = "uwsm app -- alacritty"
-local fileManager = "uwsm app -- alacritty --class yazi -e yazi"
+local terminal    = alacritty()
+local fileManager = alacritty("--class yazi -e yazi")
 local launcher    = 'uwsm app -- walker -p "Search…"'
 local browser     = "uwsm app -- zen-browser"
 local lock        = "uwsm app -- hyprlock"
 local nm          = "uwsm app -- swaync-client -t"
+local clipboard   = alacritty("--class clipse -e clipse")
+
 
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 
-local mainMod     = "SUPER" -- Sets "Windows" key as main modifier
+local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 --------------
 ---- APPS ----
@@ -25,7 +35,7 @@ hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(nm))
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(terminal .. " --class clipse -e clipse"))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(clipboard))
 hl.bind(mainMod .. " + SLASH", hl.dsp.exec_cmd(launcher))
 
 ------------------------
