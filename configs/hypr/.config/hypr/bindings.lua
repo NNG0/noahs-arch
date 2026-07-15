@@ -1,31 +1,65 @@
 ------------------
 ---- PROGRAMS ----
 ------------------
-local function alacritty(args)
-    args = args or ""
+local function set_class(args)
     return string.format(
-        "alacritty msg create-window %s || exec uwsm app -- alacritty %s",
+        "--class %s -e %s",
         args,
         args
     )
 end
 
--- Set programs that you use
-local terminal    = alacritty()
-local fileManager = alacritty("--class yazi -e yazi")
-local launcher    = 'uwsm app -- walker -p "Search…"'
-local browser     = "uwsm app -- zen-browser"
-local lock        = "uwsm app -- hyprlock"
-local nm          = "uwsm app -- swaync-client -t"
-local clipboard   = alacritty("--class clipse -e clipse")
+local function alacritty(args)
+    args = args or ""
+    local class_string = args ~= "" and set_class(args) or ""
+    return string.format(
+        "alacritty msg create-window %s",
+        class_string
+    )
+end
 
+local function wrap_uwsm(args)
+    return string.format("uwsm app -- %s", args)
+end
+
+-- local function is_running(class)
+--     return hl.exec_cmd(
+--         "hyprctl clients -j | jq -e '.[] | select(.class==\"" .. class .. "\")'"
+--     ) ~= ""
+-- end
+--
+-- local function focus_or_launch(class)
+--     if not is_running(class) then
+--         return alacritty(class)
+--     else
+--         local format_string = string.format(
+--             "class:%s",
+--             class
+--         )
+--         hl.dsp.focus({ window = class })
+--         return ""
+--     end
+-- end
+
+-- Set programs that you use
+local terminal       = alacritty()
+local fileManager    = alacritty("yazi")
+local launcher       = wrap_uwsm('walker -p "Search…"')
+local browser        = wrap_uwsm("zen-browser")
+local lock           = wrap_uwsm("hyprlock")
+local nm             = wrap_uwsm("swaync-client -t")
+local clipboard      = alacritty("clipse")
+local audio          = alacritty("wiremix")
+local bluetooth      = alacritty("bluetui")
+local wlan           = alacritty("impala")
 
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 
-local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+local mainMod        = "SUPER" -- Sets "Windows" key as main modifier
+local applicationMod = "SUPER + SPACE"
 
 --------------
 ---- APPS ----
@@ -37,6 +71,9 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(nm))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(clipboard))
 hl.bind(mainMod .. " + SLASH", hl.dsp.exec_cmd(launcher))
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(bluetooth))
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(audio))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(wlan))
 
 ------------------------
 ---- Window actions ----
@@ -44,7 +81,7 @@ hl.bind(mainMod .. " + SLASH", hl.dsp.exec_cmd(launcher))
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
-hl.bind(mainMod .. " + p", hl.dsp.window.pseudo())
+hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }))
 
 ------------------------
@@ -60,31 +97,43 @@ hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
 ---- Move windows ----
 ----------------------
 
-hl.bind(mainMod .. " + m", hl.dsp.submap("move"))
-hl.define_submap("move", function()
-    hl.bind("h", hl.dsp.window.move({ direction = "left" }))
-    hl.bind("j", hl.dsp.window.move({ direction = "down" }))
-    hl.bind("k", hl.dsp.window.move({ direction = "up" }))
-    hl.bind("l", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mainMod .. " + CTRL + h",
+    hl.dsp.window.move({ direction = "left" })
+)
 
-    hl.bind("escape", hl.dsp.submap("reset"))
-end)
+hl.bind(mainMod .. " + CTRL + j",
+    hl.dsp.window.move({ direction = "down" })
+)
 
-hl.bind(mainMod .. " + SHIFT + J", hl.dsp.layout("togglesplit")) -- dwindle only
+hl.bind(mainMod .. " + CTRL + k",
+    hl.dsp.window.move({ direction = "up" })
+)
+
+hl.bind(mainMod .. " + CTRL + l",
+    hl.dsp.window.move({ direction = "right" })
+)
+
+--hl.bind(mainMod .. " + SHIFT + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
 ------------------------
 ---- Resize windows ----
 ------------------------
 
-hl.bind(mainMod .. " + r", hl.dsp.submap("resize"))
-hl.define_submap("resize", function()
-    hl.bind("h", hl.dsp.window.resize({ x = -30, y = 0, relative = true }), { repeating = true })
-    hl.bind("l", hl.dsp.window.resize({ x = 30, y = 0, relative = true }), { repeating = true })
-    hl.bind("j", hl.dsp.window.resize({ x = 0, y = 30, relative = true }), { repeating = true })
-    hl.bind("k", hl.dsp.window.resize({ x = 0, y = -30, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + h",
+    hl.dsp.window.resize({ x = -30, y = 0, relative = true })
+)
 
-    hl.bind("escape", hl.dsp.submap("reset"))
-end)
+hl.bind(mainMod .. " + SHIFT + l",
+    hl.dsp.window.resize({ x = 30, y = 0, relative = true })
+)
+
+hl.bind(mainMod .. " + SHIFT + j",
+    hl.dsp.window.resize({ x = 0, y = 30, relative = true })
+)
+
+hl.bind(mainMod .. " + SHIFT + k",
+    hl.dsp.window.resize({ x = 0, y = -30, relative = true })
+)
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })

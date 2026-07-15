@@ -61,7 +61,7 @@ hl.window_rule({
     float = true,
     center = true,
     size = { 875, 600 },
-    match = { class = "(clipse|Bluetui|Impala|Wiremix|btop)" }
+    match = { class = "(clipse|bluetui|impala|wiremix|btop)" }
 
 
 })

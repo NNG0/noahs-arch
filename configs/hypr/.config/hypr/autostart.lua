@@ -16,3 +16,12 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("uwsm app -- swayosd-server")
     hl.exec_cmd("uwsm app -- walker --gapplication-service")
 end)
+
+local SECOND = 1000
+local MINUTE = 60 * SECOND
+
+local fetch_mails = hl.timer(function()
+    hl.exec_cmd("timeout 10 thunderbird --headless")
+end, { timeout = 15 * MINUTE, type = "repeat" })
+
+--fetch_mails:set_enabled(false)
