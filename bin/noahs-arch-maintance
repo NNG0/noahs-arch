@@ -47,21 +47,12 @@ done
 
 clean_cache() {
     info "Cleaning package cache..."
-    sudo paccache -r
-    sudo paccache -ruk0
     yay -Sc --noconfirm
-    info "Package cache cleaned."
 }
 
 remove_orphans() {
     info "Removing orphaned packages..."
-    local orphans
-    orphans=$(pacman -Qdtq || true)
-    if [[ -n "$orphans" ]]; then
-        yay -Rns --noconfirm $orphans
-    else
-        info "No orphaned packages found."
-    fi
+    yay -Yc --noconfirm
 }
 
 check_systemd() {

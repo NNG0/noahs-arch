@@ -3,11 +3,13 @@ alacritty
 bat
 brightnessctl
 fastfetch
+gvfs
 hyprland
 hyprshot
 hyprsunset
 imagemagick
 iwd
+libappindicator-gtk3
 pacman-contrib
 pipewire
 pipewire-pulse
@@ -16,6 +18,8 @@ power-profiles-daemon
 stow
 swayosd
 ttf-jetbrains-mono-nerd
+udisk2
+udiskie
 ufw
 unzip
 uwsm

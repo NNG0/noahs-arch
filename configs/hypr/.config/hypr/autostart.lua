@@ -16,6 +16,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("uwsm app -- swayosd-server")
     hl.exec_cmd("uwsm app -- walker --gapplication-service")
     hl.exec_cmd("uwsm app -- syncthing --no-browser")
+    hl.exec_cmd("uwsm app -- udiskie &")
 end)
 
 local SECOND = 1000

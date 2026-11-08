@@ -52,6 +52,7 @@ local clipboard      = alacritty("clipse")
 local audio          = alacritty("wiremix")
 local bluetooth      = alacritty("bluetui")
 local wlan           = alacritty("impala")
+local pw_manager     = wrap_uwsm("keepassxc")
 
 ---------------------
 ---- KEYBINDINGS ----
@@ -74,6 +75,7 @@ hl.bind(mainMod .. " + SLASH", hl.dsp.exec_cmd(launcher))
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(bluetooth))
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(audio))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(wlan))
+hl.bind(mainMod .. " + SHIFT + K", hl.dsp.exec_cmd(pw_manager))
 
 ------------------------
 ---- Window actions ----
@@ -120,19 +122,19 @@ hl.bind(mainMod .. " + CTRL + l",
 ------------------------
 
 hl.bind(mainMod .. " + SHIFT + h",
-    hl.dsp.window.resize({ x = -30, y = 0, relative = true })
+    hl.dsp.window.resize({ x = -30, y = 0, relative = true }), { repeating = true }
 )
 
 hl.bind(mainMod .. " + SHIFT + l",
-    hl.dsp.window.resize({ x = 30, y = 0, relative = true })
+    hl.dsp.window.resize({ x = 30, y = 0, relative = true }), { repeating = true }
 )
 
 hl.bind(mainMod .. " + SHIFT + j",
-    hl.dsp.window.resize({ x = 0, y = 30, relative = true })
+    hl.dsp.window.resize({ x = 0, y = 30, relative = true }), { repeating = true }
 )
 
 hl.bind(mainMod .. " + SHIFT + k",
-    hl.dsp.window.resize({ x = 0, y = -30, relative = true })
+    hl.dsp.window.resize({ x = 0, y = -30, relative = true, }), { repeating = true }
 )
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
@@ -213,6 +215,12 @@ hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(osdclient .. " --input-volume mute-t
     { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(osdclient .. " --brightness raise"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(osdclient .. " --brightness lower"), { locked = true, repeating = true })
+-- hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(osdclient .. " --ddcutil setvcp 10 + 5"),
+--     { locked = true, repeating = true })
+-- hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(osdclient .. " --ddcutil setvcp 10 + 5"),
+--     { locked = true, repeating = true })
+
+
 
 -- Requires playerctl
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd(osdclient .. " --playerctl next"), { locked = true })

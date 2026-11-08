@@ -57,13 +57,19 @@ hl.layer_rule({
 
 -- floating windows
 hl.window_rule({
-    name = "floating_windows",
+    name = "floating_terminal_windows",
     float = true,
     center = true,
     size = { 875, 600 },
     match = { class = "(clipse|bluetui|impala|wiremix|btop)" }
+})
 
-
+hl.window_rule({
+    name = "floating_pwm",
+    float = true,
+    center = true,
+    size = { 1000, 800 },
+    match = { class = "org.keepassxc.KeePassXC" }
 })
 
 -- Hyprland-run windowrule
