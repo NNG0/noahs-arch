@@ -1,1 +1,1 @@
-sudo systemctl enable --now swayosd-libinput-backend.service
+systemctl --user enable --now swayosd-libinput-backend.service

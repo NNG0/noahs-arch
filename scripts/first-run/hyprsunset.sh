@@ -1,1 +1,1 @@
-sudo systemctl --user enable --now hyprsunset.service
+systemctl --user enable --now hyprsunset.service

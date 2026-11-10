@@ -3,6 +3,7 @@ selection_wrap = true                                                       # wr
 disable_mouse = true
 theme = "noahs-arch"                                                   # theme to use
 additional_theme_location = "~/.config/walker/themes/"
+app_launch_prefix = "uwsm app -- "
 
 [shell]
 exclusive_zone = 0

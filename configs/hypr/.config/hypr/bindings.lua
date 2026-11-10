@@ -1,3 +1,16 @@
+-------------------
+---- Variables ----
+-------------------
+local mainMod        = "SUPER" -- Sets "Windows" key as main modifier
+local applicationMod = "SUPER + SPACE"
+
+----------------
+---- SYSTEM ----
+----------------
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("systemctl poweroff"))
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("systemctl reboot"))
+hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("uwsm stop"))
+
 ------------------
 ---- PROGRAMS ----
 ------------------
@@ -42,25 +55,22 @@ end
 -- end
 
 -- Set programs that you use
-local terminal       = alacritty()
-local fileManager    = alacritty("yazi")
-local launcher       = wrap_uwsm('walker -p "Search…"')
-local browser        = wrap_uwsm("zen-browser")
-local lock           = wrap_uwsm("hyprlock")
-local nm             = wrap_uwsm("swaync-client -t")
-local clipboard      = alacritty("clipse")
-local audio          = alacritty("wiremix")
-local bluetooth      = alacritty("bluetui")
-local wlan           = alacritty("impala")
-local pw_manager     = wrap_uwsm("keepassxc")
+local terminal    = alacritty()
+local fileManager = alacritty("yazi")
+local launcher    = wrap_uwsm('walker -p "Search…"')
+local browser     = wrap_uwsm("zen-browser")
+local lock        = wrap_uwsm("hyprlock")
+local nm          = wrap_uwsm("swaync-client -t")
+local clipboard   = alacritty("clipse")
+local audio       = alacritty("wiremix")
+local bluetooth   = alacritty("bluetui")
+local wlan        = alacritty("impala")
+local pw_manager  = wrap_uwsm("keepassxc")
 
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-
-local mainMod        = "SUPER" -- Sets "Windows" key as main modifier
-local applicationMod = "SUPER + SPACE"
 
 --------------
 ---- APPS ----

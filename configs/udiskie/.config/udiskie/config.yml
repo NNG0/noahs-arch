@@ -1,4 +1,6 @@
 program_options:
   tray: auto                               # Tray-Icon
+  notify: true           # Enable notifications
+  automount: false        # Enable automatic mounting
   file_manager: yazi                     # Programm für den Dateimanager-Menüpunkt
   terminal: alacritty --working-directory  # Programm für den Terminal-Menüpunkt
