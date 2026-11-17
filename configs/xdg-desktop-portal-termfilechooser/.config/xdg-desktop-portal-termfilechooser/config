@@ -1,7 +1,6 @@
 [filechooser]
-cmd=yazi-wrapper.sh
+cmd=/usr/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
 default_dir=$HOME
-env=TERMCMD=alacritty -T "terminal filechooser"
-env=VARIABLE2=VALUE2
-open_mode = suggested
-save_mode = last
+env=TERMCMD=alacritty -e 
+open_mode=suggested
+save_mode=suggested
